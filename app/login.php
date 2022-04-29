@@ -16,6 +16,11 @@ if (!$username || !$password) {
     exit;
 }
 
+// SSL KEYS
+
+// $res = openssl_pkey_new();
+// $details = openssl_pkey_get_details($res);
+// echo $details['key'];
 
 $pdo = (new PDOFactory())->getPdo();
 $query = $pdo->prepare('SELECT * FROM `User` WHERE `username` = :username');

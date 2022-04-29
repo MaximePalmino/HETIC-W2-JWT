@@ -1,4 +1,5 @@
 import {BlogInterface} from "../Interface/ResponsesInterfaces";
+import axios from "axios";
 
 export default function useGetBlogList() {
     return (): Promise<BlogInterface[]> => {

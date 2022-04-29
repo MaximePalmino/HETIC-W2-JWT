@@ -12,6 +12,11 @@ import HideIfNotLogged from "./Component/HideIfNotLogged";
 import BlogForm from "./Component/BlogForm";
 import useGetCookies from "./Hook/useGetCookies";
 import useEraseCookie from "./Hook/useEraseCookie";
+import useConnection from './Hook/useConnection';
+import Nav from './Component/Nav';
+import {Routes, Route} from 'react-router-dom'
+import Admin from './Component/Admin';
+
 
 export default function App() {
     const [loggedUser, setLoggedUser] = useState<LoginResponseInterface>({
@@ -29,6 +34,7 @@ export default function App() {
     const register = useRegister();
     const getBlogList = useGetBlogList();
     const cookies = useGetCookies();
+    const connection = useConnection();
     const eraseCookie = useEraseCookie();
 
     useEffect(() => {
@@ -73,7 +79,11 @@ export default function App() {
 
     return (
         <div className='container mt-5'>
-            <HideIfLogged loggedUser={loggedUser}>
+            <Nav />
+            <Routes>
+                <Route path="/admin" element={<Admin />}>
+                </Route>
+            </Routes>            <HideIfLogged loggedUser={loggedUser}>
                 <LoginForm setLocalUser={setLocalUser} needsLogin={needsLogin} setNeedsLogin={setNeedsLogin}/>
             </HideIfLogged>
 
